@@ -29,15 +29,36 @@ str(orderData)
 library(dplyr)
 ### Super Store 
 ## Aggregating Data On the Basis of Profit Earned
-groupByProduct <- orderData%>%group_by(Product.ID,sum(Profit))
+groupByProduct <- orderData %>%
+  select(Product.ID,Profit) %>%
+  group_by(Product.ID) %>%
+  summarise(Profit = sum(Profit))
+#dim(orderData)
+#dim(groupByProduct)
 # Sorting Data Set on the Basis of Profit Earned in Descending Order
 order_groupByProduct <- groupByProduct[order(-groupByProduct$Profit),] 
 head(order_groupByProduct)
-# Getting Product.ID of First Row 
-order_groupByProduct[1:2,c(1,2,3,5)]
-names(order_groupByProduct)
-# Showing Value for 1-5 rows and Column 14:21
-order_groupByProduct[1:5,c(14,17,18,19,20,21)]
+dim(order_groupByProduct)
+# Getting Product.ID of First 2 Row 
+order_groupByProduct[1:2,c(1:2)]
+#names(order_groupByProduct)
+
+valur <- order_groupByProduct[1,1]
+#https://www.r-bloggers.com/how-to-summarize-a-data-frame-by-groups-in-r/
+#http://genomicsclass.github.io/book/pages/dplyr_tutorial.html
+
+# Filter Data on the Basis of Product ID
+groupByProduct <- orderData %>%
+  select(Product.ID,Profit,Sales,Quantity,Discount) %>%
+  filter(Product.ID == "TEC-CO-10004722")
+dim(groupByProduct)
+print(groupByProduct)
+
+#rm(groupByProduct)
+#rm(goupByProduct)
+
+
+
 
 
 
