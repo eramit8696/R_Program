@@ -34,5 +34,12 @@ groupByProduct <- orderData%>%group_by(Product.ID,sum(Profit))
 order_groupByProduct <- groupByProduct[order(-groupByProduct$Profit),] 
 head(order_groupByProduct)
 # Getting Product.ID of First Row 
-order_groupByProduct[1,14]
+order_groupByProduct[1:2,c(1,2,3,5)]
+names(order_groupByProduct)
+# Showing Value for 1-5 rows and Column 14:21
+order_groupByProduct[1:5,c(14,17,18,19,20,21)]
+
+
+
+
 
